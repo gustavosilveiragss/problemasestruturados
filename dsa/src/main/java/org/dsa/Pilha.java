@@ -6,17 +6,17 @@ public class Pilha {
     private final int capacidade;
 
     public Pilha(int capacidade) {
-        this.topo = -1;
+        this.topo = 0;
         this.dados = new int[capacidade];
         this.capacidade = capacidade;
     }
 
     private boolean cheia() {
-        return this.topo == this.capacidade - 1;
+        return this.topo == this.capacidade;
     }
 
     private boolean vazia() {
-        return this.topo == -1;
+        return this.topo == 0;
     }
 
     public void insere(int elemento) {
@@ -30,11 +30,16 @@ public class Pilha {
         if (this.vazia()) {
             throw new RuntimeException("A pilha está vazia");
         }
-        return this.dados[this.topo--];
+        return this.dados[--this.topo];
     }
 
     public void imprime() {
-        for (int i = 0; i <= this.topo; i++) {
+        if (this.vazia()) {
+            System.out.println("Pilha vazia");
+            return;
+        }
+
+        for (int i = 0; i < this.topo; i++) {
             System.out.println(this.dados[i]);
         }
     }
